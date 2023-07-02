@@ -1,20 +1,21 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+
+import { Home } from "./src/screens/Home";
+
+import Toast from "react-native-toast-message";
+import { toastConfig } from "./src/components/SystemMessage";
+
+import { ThemeProvider } from "styled-components";
+import { defaultTheme } from "./src/styles/defaultTheme";
+
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
+    <ThemeProvider theme={defaultTheme}>
+      <Home />
+
+      <Toast config={toastConfig} />
       <StatusBar style="auto" />
-    </View>
+    </ThemeProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
