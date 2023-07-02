@@ -4,7 +4,7 @@ import { TouchableOpacity, View } from "react-native";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import { NewTaskParams } from "../../domain/NewTask";
+import { NewTaskParams } from "../../domain/newTask";
 
 import { LogoImage } from "../../screens/Home/styles";
 

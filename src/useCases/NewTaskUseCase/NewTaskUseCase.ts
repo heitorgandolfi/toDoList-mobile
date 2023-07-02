@@ -2,11 +2,18 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import uuid from "react-native-uuid";
 
-import { NewTaskParams } from "../domain/newTask";
+import { NewTaskParams } from "../../domain/newTask";
 
 import { Toast } from "react-native-toast-message/lib/src/Toast";
 
-export async function newTask(description: string) {
+import {
+  loadNewTask,
+  loadNewTaskDone,
+} from "../../stores/NewTaskStore/NewTaskEvents";
+
+const execute = async (description: string): Promise<void> => {
+  loadNewTask();
+
   const newTask: NewTaskParams = {
     id: uuid.v4().toString(),
     description,
@@ -31,4 +38,10 @@ export async function newTask(description: string) {
       text1: "Ops... Parece que ocorreu um erro!",
     });
   }
-}
+};
+
+const NewTaskUseCase = {
+  execute,
+};
+
+export default NewTaskUseCase;

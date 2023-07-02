@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { newTask } from "../../Database";
 
 import { ButtonText, FormContainer, Input, InputButton } from "./styles";
+import NewTaskUseCase from "../../useCases/NewTaskUseCase/NewTaskUseCase";
 
 export const FormInput = () => {
   const [taskDescription, setTaskDescription] = useState("");
@@ -12,7 +13,7 @@ export const FormInput = () => {
   }
 
   function handleCreateTask() {
-    newTask(taskDescription);
+    NewTaskUseCase.execute(taskDescription);
     setTaskDescription("");
   }
 
