@@ -1,12 +1,9 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
 import uuid from "react-native-uuid";
-
 import { NewTaskParams } from "../../domain/newTask";
-
 import { Toast } from "react-native-toast-message/lib/src/Toast";
-
 import {
+  loadNewCreateTaskDone,
   loadNewTask,
   loadNewTaskDone,
 } from "../../stores/NewTaskStore/NewTaskEvents";
@@ -21,12 +18,24 @@ const execute = async (description: string): Promise<void> => {
   };
 
   try {
-    const response = await AsyncStorage.getItem("@toDoMobile: tasks");
-    const previousData = response ? JSON.parse(response) : [];
+    const existingTasksString = await AsyncStorage.getItem(
+      "@toDoMobile: tasks"
+    );
 
-    const data = [...previousData, newTask];
+    let existingTasks: NewTaskParams[] = [];
 
-    await AsyncStorage.setItem("@toDoMobile: tasks", JSON.stringify(data));
+    if (existingTasksString) {
+      existingTasks = JSON.parse(existingTasksString);
+    }
+
+    const updatedTasks = [newTask, ...existingTasks];
+
+    await AsyncStorage.setItem(
+      "@toDoMobile: tasks",
+      JSON.stringify(updatedTasks)
+    );
+
+    loadNewCreateTaskDone(newTask);
 
     Toast.show({
       type: "success",

@@ -1,10 +1,12 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 import { TouchableOpacity, View } from "react-native";
 
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useStore } from "effector-react";
 
-import { NewTaskParams } from "../../domain/newTask";
+import GetTasksUseCase from "../../useCases/GetTasksUseCase/GetTasksUseCase";
+
+import NewTaskStore from "../../stores/NewTaskStore/NewTaskStore";
 
 import { LogoImage } from "../../screens/Home/styles";
 
@@ -20,22 +22,16 @@ import {
 } from "./styles";
 
 export const Tasks = () => {
-  const [data, setData] = useState<NewTaskParams[]>([]);
-
-  async function handleFetchData() {
-    const response = await AsyncStorage.getItem("@toDoMobile: tasks"); // Colocar remove sempre que desejar limpar.
-    const data = response ? JSON.parse(response) : [];
-    setData(data);
-  }
+  const { tasks } = useStore(NewTaskStore);
 
   useEffect(() => {
-    handleFetchData();
-  }, [data]);
+    GetTasksUseCase.execute();
+  }, []);
 
   function showTasks() {
-    if (data.length > 0) {
-      return data.map(({ description, isDone }) => (
-        <TaskWrapper key={description}>
+    if (tasks.length > 0) {
+      return tasks.map(({ description, isDone, id }) => (
+        <TaskWrapper key={id}>
           <TaskContent>
             <TouchableOpacity>
               {isDone ? (

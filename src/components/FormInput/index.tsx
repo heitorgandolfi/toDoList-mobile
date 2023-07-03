@@ -1,11 +1,15 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-import { newTask } from "../../Database";
+import { useStore } from "effector-react";
 
-import { ButtonText, FormContainer, Input, InputButton } from "./styles";
 import NewTaskUseCase from "../../useCases/NewTaskUseCase/NewTaskUseCase";
 
+import NewTaskStore from "../../stores/NewTaskStore/NewTaskStore";
+
+import { ButtonText, FormContainer, Input, InputButton } from "./styles";
+
 export const FormInput = () => {
+  const { isLoading } = useStore(NewTaskStore);
   const [taskDescription, setTaskDescription] = useState("");
 
   function handleInputChange(inputValue: string) {
@@ -21,7 +25,13 @@ export const FormInput = () => {
     <FormContainer>
       <Input value={taskDescription} onChangeText={handleInputChange} />
       <InputButton onPress={handleCreateTask} activeOpacity={0.9}>
-        <ButtonText>Criar</ButtonText>
+        <ButtonText>
+          {isLoading ? (
+            "Criando..."
+          ) : (
+            "Criar"
+          )}
+        </ButtonText>
       </InputButton>
     </FormContainer>
   );
