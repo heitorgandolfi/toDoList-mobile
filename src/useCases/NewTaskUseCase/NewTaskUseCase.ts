@@ -35,7 +35,6 @@ const execute = async (description: string): Promise<void> => {
       "@toDoMobile:tasks",
       JSON.stringify(updatedTasks)
     );
-    console.log(newTask);
 
     loadNewCreateTaskDone(newTask);
 

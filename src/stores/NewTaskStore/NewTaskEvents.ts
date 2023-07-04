@@ -9,3 +9,4 @@ export const loadNewCreateTaskDone = createEvent<NewTaskParams>(
 );
 export const loadNewTaskDone = createEvent<NewTaskParams[]>("loadNewTaskDone");
 export const loadNewTaskFail = createEvent<RequestError>("loadNewTaskFail");
+export const loadDeleteTaskDone = createEvent<String>("loadDeleteTaskDone");

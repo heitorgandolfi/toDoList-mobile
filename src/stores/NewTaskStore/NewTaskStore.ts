@@ -1,6 +1,7 @@
 import { createStore } from "effector";
 import { NewTaskState } from "./NewTaskState";
 import {
+  loadDeleteTaskDone,
   loadNewCreateTaskDone,
   loadNewTask,
   loadNewTaskDone,
@@ -39,6 +40,13 @@ const NewTaskStore = createStore<NewTaskState>(initialState)
     isLoading: false,
     hasError: data.hasError,
     errorMessage: data.message,
+  }))
+  .on(loadDeleteTaskDone, (state, data) => ({
+    ...state,
+    isLoading: false,
+    tasks: [...state.tasks.filter((task) => task.id !== data.toString())],
+    hasError: false,
+    errorMessage: "",
   }));
 
 export default NewTaskStore;
