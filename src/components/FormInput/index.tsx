@@ -6,6 +6,7 @@ import NewTaskUseCase from "../../useCases/NewTaskUseCase/NewTaskUseCase";
 
 import NewTaskStore from "../../stores/NewTaskStore/NewTaskStore";
 
+import { ActivityIndicator } from "react-native";
 import { ButtonText, FormContainer, Input, InputButton } from "./styles";
 
 export const FormInput = () => {
@@ -26,11 +27,7 @@ export const FormInput = () => {
       <Input value={taskDescription} onChangeText={handleInputChange} />
       <InputButton onPress={handleCreateTask} activeOpacity={0.9}>
         <ButtonText>
-          {isLoading ? (
-            "Criando..."
-          ) : (
-            "Criar"
-          )}
+          {isLoading ? <ActivityIndicator color="#FFF" /> : "Criar"}
         </ButtonText>
       </InputButton>
     </FormContainer>

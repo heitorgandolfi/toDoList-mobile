@@ -24,7 +24,6 @@ import DoneTasksUseCase from "../../useCases/DoneTaskUseCase/DoneTaskUseCase";
 
 export const Tasks = () => {
   const { tasks } = useStore(NewTaskStore);
-  console.log(tasks);
   
   useEffect(() => {
     GetTasksUseCase.execute();

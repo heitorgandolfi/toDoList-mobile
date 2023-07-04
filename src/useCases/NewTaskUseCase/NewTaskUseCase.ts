@@ -11,7 +11,6 @@ import {
 
 import { Toast } from "react-native-toast-message/lib/src/Toast";
 
-
 const execute = async (description: string): Promise<void> => {
   loadNewTask();
 
@@ -22,9 +21,7 @@ const execute = async (description: string): Promise<void> => {
   };
 
   try {
-    const existingTasksString = await AsyncStorage.getItem(
-      "@toDoMobile: tasks"
-    );
+    const existingTasksString = await AsyncStorage.getItem("@toDoMobile:tasks");
 
     let existingTasks: NewTaskParams[] = [];
 
@@ -35,10 +32,10 @@ const execute = async (description: string): Promise<void> => {
     const updatedTasks = [newTask, ...existingTasks];
 
     await AsyncStorage.setItem(
-      "@toDoMobile: tasks",
+      "@toDoMobile:tasks",
       JSON.stringify(updatedTasks)
     );
-console.log(newTask);
+    console.log(newTask);
 
     loadNewCreateTaskDone(newTask);
 

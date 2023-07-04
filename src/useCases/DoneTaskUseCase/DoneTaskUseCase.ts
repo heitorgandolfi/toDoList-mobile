@@ -13,7 +13,6 @@ const execute = async (id: string): Promise<void> => {
 
     if (task) {
       task.isDone = !task.isDone;
-      console.log(data);
 
       await AsyncStorage.setItem("@toDoMobile:tasks", JSON.stringify(data));
       loadNewTaskDone(data);
