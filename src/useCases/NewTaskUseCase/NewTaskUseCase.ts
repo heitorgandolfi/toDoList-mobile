@@ -1,12 +1,16 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+
 import uuid from "react-native-uuid";
+
 import { NewTaskParams } from "../../domain/newTask";
-import { Toast } from "react-native-toast-message/lib/src/Toast";
+
 import {
   loadNewCreateTaskDone,
   loadNewTask,
-  loadNewTaskDone,
 } from "../../stores/NewTaskStore/NewTaskEvents";
+
+import { Toast } from "react-native-toast-message/lib/src/Toast";
+
 
 const execute = async (description: string): Promise<void> => {
   loadNewTask();
@@ -34,6 +38,7 @@ const execute = async (description: string): Promise<void> => {
       "@toDoMobile: tasks",
       JSON.stringify(updatedTasks)
     );
+console.log(newTask);
 
     loadNewCreateTaskDone(newTask);
 

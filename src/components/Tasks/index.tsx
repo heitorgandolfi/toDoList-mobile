@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import { TouchableOpacity, View } from "react-native";
+import { FlatList, TouchableOpacity } from "react-native";
 
 import { useStore } from "effector-react";
 
@@ -20,52 +20,62 @@ import {
   TaskWrapper,
   TrashCanIcon,
 } from "./styles";
+import DoneTasksUseCase from "../../useCases/DoneTaskUseCase/DoneTaskUseCase";
 
 export const Tasks = () => {
   const { tasks } = useStore(NewTaskStore);
-
+  console.log(tasks);
+  
   useEffect(() => {
     GetTasksUseCase.execute();
   }, []);
 
-  function showTasks() {
-    if (tasks.length > 0) {
-      return tasks.map(({ description, isDone, id }) => (
-        <TaskWrapper key={id}>
-          <TaskContent>
-            <TouchableOpacity>
-              {isDone ? (
-                <CheckedCircleIcon name="check-circle" />
-              ) : (
-                <CircleOutlineIcon name="circle-outline" />
-              )}
-            </TouchableOpacity>
-
-            <TaskText>{description}</TaskText>
-          </TaskContent>
-
-          <TouchableOpacity>
-            <TrashCanIcon name="trash-can" />
-          </TouchableOpacity>
-        </TaskWrapper>
-      ));
-    }
-
-    return (
-      <>
-        <LogoImage source={require("../../../assets/empty-tasks.png")} />
-
-        <EmptyTaskTextWrapper>
-          <EmptyTaskText>Você ainda não tem tarefas cadastradas.</EmptyTaskText>
-          <EmptyTaskText>
-            Crie tarefas e organize seus itens a fazer.
-          </EmptyTaskText>
-        </EmptyTaskTextWrapper>
-      </>
-    );
+  function handleDeleteTask(id: any) {
+    DoneTasksUseCase.execute(id);
   }
 
-  // Depois, transformar o View em uma FlatList
+  return (
+    <>
+      {tasks.length > 0 ? (
+        <FlatList
+          data={tasks}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item: { description, id, isDone } }) => (
+            <TaskWrapper key={id}>
+              <TaskContent>
+                <TouchableOpacity
+                  onPress={() => {
+                    handleDeleteTask(id);
+                  }}
+                >
+                  {isDone ? (
+                    <CheckedCircleIcon name="check-circle" />
+                  ) : (
+                    <CircleOutlineIcon name="circle-outline" />
+                  )}
+                </TouchableOpacity>
 
-  return <View>{showTasks()}</View>;
+                <TaskText>{description}</TaskText>
+              </TaskContent>
+
+              <TouchableOpacity>
+                <TrashCanIcon name="trash-can" />
+              </TouchableOpacity>
+            </TaskWrapper>
+          )}
+        />
+      ) : (
+        <>
+          <LogoImage source={require("../../../assets/empty-tasks.png")} />
+
+          <EmptyTaskTextWrapper>
+            <EmptyTaskText>
+              Você ainda não tem tarefas cadastradas.{"\n"}
+              Crie tarefas e organize seus itens a fazer.
+            </EmptyTaskText>
+          </EmptyTaskTextWrapper>
+        </>
+      )}
+    </>
+  );
 };

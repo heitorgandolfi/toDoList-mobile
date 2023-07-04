@@ -9,7 +9,7 @@ const execute = async (): Promise<void> => {
   //   loadNewTask();
 
   try {
-    const response = await AsyncStorage.getItem("@toDoMobile: tasks"); // Colocar remove sempre que desejar limpar.
+    const response = await AsyncStorage.getItem("@toDoMobile:tasks"); // Colocar remove sempre que desejar limpar.
     const data = response ? JSON.parse(response) : [];
 
     loadNewTaskDone(data);
