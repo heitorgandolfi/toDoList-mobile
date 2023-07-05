@@ -15,6 +15,8 @@
     "effector-react": "^22.5.3",
     "expo": "~48.0.18",
     "expo-status-bar": "~1.4.4",
+    "i18n": "^0.15.1",
+    "i18n-js": "^4.2.3",
     "react": "18.2.0",
     "react-native": "0.71.8",
     "react-native-toast-message": "^2.1.6",

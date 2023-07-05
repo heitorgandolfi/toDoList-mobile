@@ -1,5 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+import i18n from "../../i18n/locales";
+
 import uuid from "react-native-uuid";
 
 import { NewTaskParams } from "../../domain/newTask";
@@ -40,12 +42,12 @@ const execute = async (description: string): Promise<void> => {
 
     Toast.show({
       type: "success",
-      text1: "Tarefa criada com sucesso!",
+      text1: `${i18n.t("createTaskSuccess")}`,
     });
   } catch (error) {
     Toast.show({
       type: "error",
-      text1: "Ops... Parece que ocorreu um erro!",
+      text1: `${i18n.t("createTaskFail")}`,
     });
   }
 };

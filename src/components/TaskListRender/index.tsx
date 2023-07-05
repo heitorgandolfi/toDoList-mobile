@@ -11,6 +11,7 @@ import {
 } from "../Tasks/styles";
 import { LogoImage } from "../../screens/Home/styles";
 import { NewTaskParams } from "../../domain/newTask";
+import i18n from "../../i18n/locales";
 
 type TaskListRenderProps = {
   data: NewTaskParams[];
@@ -51,10 +52,7 @@ export const TaskListRender = ({
           <LogoImage source={require("../../../assets/empty-tasks.png")} />
 
           <EmptyTaskTextWrapper>
-            <EmptyTaskText>
-              Você ainda não tem tarefas cadastradas.{"\n"}
-              Crie tarefas e organize seus itens a fazer.
-            </EmptyTaskText>
+            <EmptyTaskText>{i18n.t("noTasksMessage")}</EmptyTaskText>
           </EmptyTaskTextWrapper>
         </>
       }

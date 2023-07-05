@@ -11,6 +11,7 @@ import { TaskListRender } from "../TaskListRender";
 import DoneTasksUseCase from "../../useCases/DoneTaskUseCase/DoneTaskUseCase";
 import RemoveTaskUseCase from "../../useCases/RemoveTaskUseCase/RemoveTaskUseCase";
 import { Alert } from "react-native";
+import i18n from "../../i18n/locales";
 
 export const Tasks = () => {
   const { tasks } = useStore(NewTaskStore);
@@ -24,19 +25,23 @@ export const Tasks = () => {
   }
 
   function handleRemoveTask(id: string) {
-    Alert.alert("Exclusão de tarefa", "Deseja realmente excluir?", [
-      {
-        text: "Sim",
-        style: "default",
-        onPress: () => {
-          RemoveTaskUseCase.execute(id);
+    Alert.alert(
+      `${i18n.t("removeTaskConfirmationTitle")}`,
+      `${i18n.t("removeTaskConfirmationDescription")}`,
+      [
+        {
+          text: `${i18n.t("yes")}`,
+          style: "default",
+          onPress: () => {
+            RemoveTaskUseCase.execute(id);
+          },
         },
-      },
-      {
-        text: "Nao",
-        style: "cancel",
-      },
-    ]);
+        {
+          text: `${i18n.t("no")}`,
+          style: "cancel",
+        },
+      ]
+    );
   }
 
   return (

@@ -6,6 +6,7 @@ import {
   CounterWrapper,
 } from "./styles";
 import NewTaskStore from "../../stores/NewTaskStore/NewTaskStore";
+import i18n from "../../i18n/locales";
 
 export const Counter = () => {
   const { tasks } = useStore(NewTaskStore);
@@ -15,12 +16,12 @@ export const Counter = () => {
   return (
     <CounterWrapper>
       <CounterContent>
-        <CounterText>Tarefas Criadas</CounterText>
+        <CounterText>{i18n.t("createdTasks")}</CounterText>
         <CounterNumber>{tasks.length}</CounterNumber>
       </CounterContent>
 
       <CounterContent>
-        <CounterText variant="done">Tarefas Concluídas </CounterText>
+        <CounterText variant="done">{i18n.t("completedTasks")}</CounterText>
         <CounterNumber variant="done">{completedTasks.length}</CounterNumber>
       </CounterContent>
     </CounterWrapper>

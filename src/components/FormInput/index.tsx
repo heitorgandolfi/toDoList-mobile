@@ -2,6 +2,8 @@ import { useState } from "react";
 
 import { ActivityIndicator, Alert } from "react-native";
 
+import i18n from "../../i18n/locales";
+
 import { useStore } from "effector-react";
 
 import NewTaskUseCase from "../../useCases/NewTaskUseCase/NewTaskUseCase";
@@ -17,10 +19,7 @@ export const FormInput = () => {
 
   function handleCreateTask() {
     if (taskDescription === "") {
-      return Alert.alert(
-        "Ops...",
-        "Não é possível adicionar tarefas em branco."
-      );
+      return Alert.alert(`${i18n.t("invalidTaskDescription")}`);
     }
 
     NewTaskUseCase.execute(taskDescription);
@@ -32,12 +31,16 @@ export const FormInput = () => {
       <Input
         value={taskDescription}
         onChangeText={setTaskDescription}
-        placeholder="Descreva sua tarefa"
+        placeholder={i18n.t("placeholderTaskInput")}
         placeholderTextColor="#707070"
       />
       <InputButton onPress={handleCreateTask} activeOpacity={0.9}>
         <ButtonText>
-          {isLoading ? <ActivityIndicator color="#FFF" /> : "Criar"}
+          {isLoading ? (
+            <ActivityIndicator color="#FFF" />
+          ) : (
+            <>{i18n.t("createTaskButtonText")}</>
+          )}
         </ButtonText>
       </InputButton>
     </FormContainer>
