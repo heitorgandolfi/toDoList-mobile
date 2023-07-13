@@ -1,20 +1,26 @@
 import { useEffect } from "react";
+import { Alert } from "react-native";
 
 import { useStore } from "effector-react";
+import NewTaskStore from "../../stores/NewTaskStore/NewTaskStore";
+
+import i18n from "../../i18n/locales";
 
 import GetTasksUseCase from "../../useCases/GetTasksUseCase/GetTasksUseCase";
-
-import NewTaskStore from "../../stores/NewTaskStore/NewTaskStore";
+import DoneTasksUseCase from "../../useCases/DoneTaskUseCase/DoneTaskUseCase";
+import RemoveTaskUseCase from "../../useCases/RemoveTaskUseCase/RemoveTaskUseCase";
 
 import { TaskListRender } from "../TaskListRender";
 
-import DoneTasksUseCase from "../../useCases/DoneTaskUseCase/DoneTaskUseCase";
-import RemoveTaskUseCase from "../../useCases/RemoveTaskUseCase/RemoveTaskUseCase";
-import { Alert } from "react-native";
-import i18n from "../../i18n/locales";
+type TasksProps = {
+  isDone?: boolean;
+};
 
-export const Tasks = () => {
+export const Tasks = ({ isDone = false }: TasksProps) => {
   const { tasks } = useStore(NewTaskStore);
+
+  const toDoTasks = tasks.filter((task) => !task.isDone);
+  const doneTasks = tasks.filter((task) => task.isDone);
 
   useEffect(() => {
     GetTasksUseCase.execute();
@@ -46,7 +52,7 @@ export const Tasks = () => {
 
   return (
     <TaskListRender
-      data={tasks}
+      data={isDone ? doneTasks : toDoTasks}
       onPressDone={handleDoneTask}
       onPressDelete={handleRemoveTask}
     />

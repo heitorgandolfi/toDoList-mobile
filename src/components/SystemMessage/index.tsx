@@ -3,35 +3,36 @@ import {
   ErrorToast,
   BaseToastProps,
 } from "react-native-toast-message";
+import { defaultTheme } from "../../styles/defaultTheme";
 
 export const toastConfig = {
   success: (props: BaseToastProps) => (
     <BaseToast
       {...props}
-      style={{ borderLeftColor: "#FFC600" }}
+      style={{ borderLeftColor: defaultTheme["yellow-500"] }}
       contentContainerStyle={{
         paddingHorizontal: 12,
-        backgroundColor: "#282829",
+        backgroundColor: defaultTheme["gray-600"],
       }}
       text1Style={{
         fontSize: 15,
         fontWeight: "700",
-        color: "#FFFF",
+        color: defaultTheme["white"],
       }}
     />
   ),
   error: (props: BaseToastProps) => (
     <ErrorToast
       {...props}
-      style={{ borderLeftColor: "#a9303b" }}
+      style={{ borderLeftColor: defaultTheme["red-500"] }}
       contentContainerStyle={{
         paddingHorizontal: 12,
-        backgroundColor: "#282829",
+        backgroundColor: defaultTheme["gray-600"],
       }}
       text1Style={{
         fontSize: 15,
         fontWeight: "700",
-        color: "#FFFF",
+        color: defaultTheme["white"],
       }}
     />
   ),

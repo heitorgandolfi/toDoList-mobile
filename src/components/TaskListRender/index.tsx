@@ -19,6 +19,14 @@ type TaskListRenderProps = {
   onPressDelete: (id: string) => void;
 };
 
+function checkIconRender(isDone: boolean) {
+  if (isDone) {
+    return <CheckedCircleIcon name="check-circle" />;
+  }
+
+  return <CircleOutlineIcon name="circle-outline" />;
+}
+
 export const TaskListRender = ({
   data,
   onPressDone,
@@ -32,11 +40,7 @@ export const TaskListRender = ({
         <TaskWrapper key={id}>
           <TaskContent>
             <TouchableOpacity onPress={() => onPressDone(id)}>
-              {isDone ? (
-                <CheckedCircleIcon name="check-circle" />
-              ) : (
-                <CircleOutlineIcon name="circle-outline" />
-              )}
+              {checkIconRender(isDone)}
             </TouchableOpacity>
 
             <TaskText>{description}</TaskText>
@@ -52,7 +56,8 @@ export const TaskListRender = ({
           <LogoImage source={require("../../../assets/empty-tasks.png")} />
 
           <EmptyTaskTextWrapper>
-            <EmptyTaskText>{i18n.t("noTasksMessage")}</EmptyTaskText>
+            {/* fazer uma condicional aqui, em relacao ao isDone, para adaptar a msg nas tabsbottom */}
+            <EmptyTaskText>{i18n.t("noToDoTasksMessage")}</EmptyTaskText>
           </EmptyTaskTextWrapper>
         </>
       }

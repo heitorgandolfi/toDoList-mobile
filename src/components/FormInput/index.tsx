@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
-import { ActivityIndicator, Alert } from "react-native";
+import { ActivityIndicator, Alert, Keyboard } from "react-native";
 
 import i18n from "../../i18n/locales";
 
@@ -11,6 +11,7 @@ import NewTaskUseCase from "../../useCases/NewTaskUseCase/NewTaskUseCase";
 import NewTaskStore from "../../stores/NewTaskStore/NewTaskStore";
 
 import { ButtonText, FormContainer, Input, InputButton } from "./styles";
+import { defaultTheme } from "../../styles/defaultTheme";
 
 export const FormInput = () => {
   const { isLoading } = useStore(NewTaskStore);
@@ -23,6 +24,8 @@ export const FormInput = () => {
     }
 
     NewTaskUseCase.execute(taskDescription);
+
+    Keyboard.dismiss();
     setTaskDescription("");
   }
 
@@ -32,12 +35,13 @@ export const FormInput = () => {
         value={taskDescription}
         onChangeText={setTaskDescription}
         placeholder={i18n.t("placeholderTaskInput")}
-        placeholderTextColor="#707070"
+        placeholderTextColor={defaultTheme["gray-450"]}
+        onSubmitEditing={handleCreateTask}
       />
       <InputButton onPress={handleCreateTask} activeOpacity={0.9}>
         <ButtonText>
           {isLoading ? (
-            <ActivityIndicator color="#FFF" />
+            <ActivityIndicator color={defaultTheme["white"]} />
           ) : (
             <>{i18n.t("createTaskButtonText")}</>
           )}

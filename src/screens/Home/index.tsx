@@ -1,7 +1,7 @@
 import { AppContainer, LogoImage } from "./styles";
 
-import { FormInput } from "../../components/FormInput";
 import { Counter } from "../../components/Counter";
+import { FormInput } from "../../components/FormInput";
 import { Tasks } from "../../components/Tasks";
 
 export const Home = () => {

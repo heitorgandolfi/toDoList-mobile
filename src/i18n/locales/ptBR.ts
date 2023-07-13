@@ -10,6 +10,7 @@ export default {
   removeTaskConfirmationDescription: "Deseja realmente excluir?",
   createTaskSuccess: "Tarefa criada com sucesso!",
   createTaskFail: "Ops... Parece que ocorreu um erro!",
-  noTasksMessage:
-    "Você ainda não tem tarefas cadastradas.\nCrie tarefas e organize seus itens a fazer.",
+  noToDoTasksMessage:
+    "Você não possui tarefas pendentes.\nCrie tarefas e organize seus itens a fazer.",
+  noDoneTasksMessage: "Suas tarefas concluídas aparecerão aqui.",
 };
