@@ -7,11 +7,12 @@ import { toastConfig } from "./src/components/SystemMessage";
 
 import { ThemeProvider } from "styled-components";
 import { defaultTheme } from "./src/styles/defaultTheme";
+import { Routes } from "./src/routes";
 
 export default function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Home />
+      <Routes />
 
       <Toast config={toastConfig} />
       <StatusBar
