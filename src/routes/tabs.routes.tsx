@@ -1,4 +1,7 @@
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import {
+  BottomTabNavigationProp,
+  createBottomTabNavigator,
+} from "@react-navigation/bottom-tabs";
 
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
@@ -7,7 +10,14 @@ import { DoneTasks } from "../screens/DoneTasks";
 
 import { defaultTheme } from "../styles/defaultTheme";
 
-const { Navigator, Screen } = createBottomTabNavigator();
+type RootTabParamList = {
+  Home: undefined;
+  DoneTasks: undefined;
+};
+
+export type NavigatorRoutesProps = BottomTabNavigationProp<RootTabParamList>;
+
+const { Navigator, Screen } = createBottomTabNavigator<RootTabParamList>();
 
 export function TabsRoutes() {
   return (
