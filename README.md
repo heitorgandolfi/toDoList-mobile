@@ -2,6 +2,9 @@
 
 # ToDo List [Mobile Version]
 
+<img src="https://github.com/heitorgandolfi/levva-coins/assets/113437603/50d7cf8e-359a-4f4f-9d8f-e2c14d713c72.png" width="290px">
+<img src="https://github.com/heitorgandolfi/levva-coins/assets/113437603/f6d1ad2a-fb14-44fd-81fe-68868bde6e44.png" width="290px">
+
 <img src="http://img.shields.io/static/v1?label=STATUS&message=FINALIZADO&color=green&style=for-the-badge"/> <img src="http://img.shields.io/static/v1?label=release%20date&message=august%202023&color=green&style=for-the-badge"/> <img src="http://img.shields.io/static/v1?label=license&message=MIT&color=informational&style=for-the-badge"/>
 </div>
 
