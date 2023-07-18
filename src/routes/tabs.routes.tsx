@@ -1,3 +1,5 @@
+import { Platform } from "react-native";
+
 import {
   BottomTabNavigationProp,
   createBottomTabNavigator,
@@ -20,6 +22,8 @@ export type NavigatorRoutesProps = BottomTabNavigationProp<RootTabParamList>;
 const { Navigator, Screen } = createBottomTabNavigator<RootTabParamList>();
 
 export function TabsRoutes() {
+  const iconSize = 24;
+
   return (
     <Navigator
       initialRouteName="Home"
@@ -31,9 +35,9 @@ export function TabsRoutes() {
         tabBarActiveTintColor: defaultTheme["yellow-500"],
 
         tabBarStyle: {
-          height: 70,
+          height: Platform.OS === "android" ? 70 : 96,
           backgroundColor: defaultTheme["black"],
-          borderTopColor: defaultTheme["gray-600"],
+          borderTopWidth: 0,
         },
       }}
     >
@@ -43,9 +47,10 @@ export function TabsRoutes() {
         options={{
           tabBarIcon: ({ color, focused }) => {
             return (
+              // Criar um componente?
               <MaterialCommunityIcons
                 name="text-box"
-                size={24}
+                size={iconSize}
                 focused={focused}
                 color={color}
               />
@@ -61,7 +66,7 @@ export function TabsRoutes() {
             return (
               <MaterialCommunityIcons
                 name="text-box-check"
-                size={24}
+                size={iconSize}
                 focused={focused}
                 color={color}
               />

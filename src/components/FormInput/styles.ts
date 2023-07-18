@@ -10,26 +10,30 @@ export const FormContainer = styled.View`
 `;
 
 export const Input = styled.TextInput`
-  width: 70%;
-  padding: 8px;
+  flex: 1;
+  height: 45px;
+  padding: 0 12px;
 
   border: 1px solid transparent;
   border-radius: 8px;
+
   color: ${(props) => props.theme["gray-300"]};
   background-color: ${(props) => props.theme["gray-500"]};
 `;
 
 export const InputButton = styled.TouchableOpacity`
   justify-content: center;
+  align-items: center;
+
   width: 30%;
-  padding: 12px;
+  height: 45px;
 
   border: 1px solid transparent;
   border-radius: 8px;
+  
   background-color: ${(props) => props.theme["blue-500"]};
 `;
 
 export const ButtonText = styled.Text`
-  align-self: center;
   color: ${(props) => props.theme["white"]};
 `;
