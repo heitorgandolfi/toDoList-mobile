@@ -27,17 +27,22 @@ function checkIconRender(isDone: boolean) {
   if (isDone) {
     return <CheckedCircleIcon name="check-circle" />;
   }
-
   return <CircleOutlineIcon name="circle-outline" />;
+}
+
+function renderEmptyTaskMessage(isDone: boolean) {
+  if (isDone) {
+    return <EmptyTaskText>{i18n.t("doneTasksMessage")}</EmptyTaskText>;
+  }
+  return <EmptyTaskText>{i18n.t("toDoTasksMessage")}</EmptyTaskText>;
 }
 
 export const TaskListRender = ({
   data,
   onPressDone,
   onPressDelete,
-  isDone
+  isDone,
 }: TaskListRenderProps) => {
-
   return (
     <FlatList
       data={data}
@@ -62,11 +67,7 @@ export const TaskListRender = ({
           <LogoImage source={require("../../../assets/empty-tasks.png")} />
 
           <EmptyTaskTextWrapper>
-            {isDone ? (
-              <EmptyTaskText>{i18n.t("doneTasksMessage")}</EmptyTaskText>
-            ) : (
-              <EmptyTaskText>{i18n.t("toDoTasksMessage")}</EmptyTaskText>
-            )}
+            {renderEmptyTaskMessage(isDone)}
           </EmptyTaskTextWrapper>
         </>
       }
