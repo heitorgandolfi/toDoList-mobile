@@ -24,7 +24,7 @@ Para rodar o projeto localmente, basta seguir os seguintes passos:
 
 1. Clone o repositório para o seu computador:
 
-`$ git clone https://github.com/heitorgandolfi/toDO-mobileVersion.git`
+`$ git clone https://github.com/heitorgandolfi/toDoList-mobile.git`
 
 2. Acesse o diretório do projeto:
 
