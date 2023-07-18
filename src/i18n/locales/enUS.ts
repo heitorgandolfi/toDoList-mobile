@@ -10,7 +10,7 @@ export default {
   removeTaskConfirmationDescription: "Are you sure you want to delete?",
   createTaskSuccess: "Task created successfully!",
   createTaskFail: "Oops... It seems an error occurred!",
-  noToDoTasksMessage:
+  toDoTasksMessage:
     "You have no pending tasks.\nCreate tasks and organize your to-do items.",
-  noDoneTasksMessage: "Your completed tasks will appear here.",
+  doneTasksMessage: "Your completed tasks will appear here.",
 };

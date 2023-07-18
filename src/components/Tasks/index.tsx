@@ -55,6 +55,7 @@ export const Tasks = ({ isDone = false }: TasksProps) => {
       data={isDone ? doneTasks : toDoTasks}
       onPressDone={handleDoneTask}
       onPressDelete={handleRemoveTask}
+      isDone={isDone}
     />
   );
 };
