@@ -31,6 +31,11 @@ export const FormInput = () => {
     setTaskDescription("");
   }
 
+  function renderButtonContent() {
+    if (isLoading) return <ActivityIndicator color={defaultTheme["white"]} />;
+    return <>{i18n.t("createTaskButtonText")}</>;
+  }
+
   return (
     <FormContainer>
       <Input
@@ -42,13 +47,7 @@ export const FormInput = () => {
         placeholderTextColor={defaultTheme["gray-450"]}
       />
       <InputButton onPress={handleCreateTask} activeOpacity={0.9}>
-        <ButtonText>
-          {isLoading ? (
-            <ActivityIndicator color={defaultTheme["white"]} />
-          ) : (
-            <>{i18n.t("createTaskButtonText")}</>
-          )}
-        </ButtonText>
+        <ButtonText>{renderButtonContent()}</ButtonText>
       </InputButton>
     </FormContainer>
   );
