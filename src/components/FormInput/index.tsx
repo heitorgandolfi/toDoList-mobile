@@ -1,17 +1,16 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 
-import { ActivityIndicator, Alert, Keyboard } from "react-native";
-
-import i18n from "../../i18n/locales";
+import { ActivityIndicator, Keyboard } from "react-native";
 
 import { useStore } from "effector-react";
+import { Toast } from "react-native-toast-message/lib/src/Toast";
 
 import NewTaskUseCase from "../../useCases/NewTaskUseCase/NewTaskUseCase";
-
 import NewTaskStore from "../../stores/NewTaskStore/NewTaskStore";
+import i18n from "../../i18n/locales";
+import { defaultTheme } from "../../styles/defaultTheme";
 
 import { ButtonText, FormContainer, Input, InputButton } from "./styles";
-import { defaultTheme } from "../../styles/defaultTheme";
 
 export const FormInput = () => {
   const { isLoading } = useStore(NewTaskStore);
@@ -20,7 +19,10 @@ export const FormInput = () => {
 
   function handleCreateTask() {
     if (taskDescription === "") {
-      return Alert.alert(`${i18n.t("invalidTaskDescription")}`);
+      return Toast.show({
+        type: "error",
+        text1: `${i18n.t("invalidTaskDescription")}`,
+      });
     }
 
     NewTaskUseCase.execute(taskDescription);
@@ -34,9 +36,10 @@ export const FormInput = () => {
       <Input
         value={taskDescription}
         onChangeText={setTaskDescription}
+        onSubmitEditing={handleCreateTask}
+        returnKeyType="send"
         placeholder={i18n.t("placeholderTaskInput")}
         placeholderTextColor={defaultTheme["gray-450"]}
-        onSubmitEditing={handleCreateTask}
       />
       <InputButton onPress={handleCreateTask} activeOpacity={0.9}>
         <ButtonText>

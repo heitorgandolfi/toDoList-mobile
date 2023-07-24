@@ -3,7 +3,7 @@ export default {
   no: "No",
   placeholderTaskInput: "Describe your task",
   createTaskButtonText: "Create",
-  invalidTaskDescription: "Ops... Cannot add blank tasks",
+  invalidTaskDescription: "Cannot add blank tasks",
   createdTasks: "Created Tasks",
   completedTasks: "Completed Tasks",
   removeTaskConfirmationTitle: "Task Deletion",

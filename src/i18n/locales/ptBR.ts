@@ -3,7 +3,7 @@ export default {
   no: "Não",
   placeholderTaskInput: "Descreva sua tarefa",
   createTaskButtonText: "Criar",
-  invalidTaskDescription: "Ops... Não é possível adicionar tarefas em branco",
+  invalidTaskDescription: "Não é possível adicionar tarefas em branco",
   createdTasks: "Tarefas Criadas",
   completedTasks: "Tarefas Concluídas",
   removeTaskConfirmationTitle: "Exclusão de tarefa",
